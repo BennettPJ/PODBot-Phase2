@@ -65,13 +65,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="501dp"
-        android:layout_height="171dp"
-        android:layout_marginStart="232dp"
+        android:layout_width="289dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/image_of_raytheon_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/raytheon_logo_big" />
+        app:srcCompat="@drawable/raytheon_rtx" />
 
     <ImageView
         android:id="@+id/imageView3"
