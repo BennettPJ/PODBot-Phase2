@@ -1,6 +1,8 @@
 package com.example.podbot;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,5 +16,17 @@ public class PODBotConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_podbot_config);
+    }
+
+    public void goToConfirm(View view){
+        // Move to the PrintConfirmActivity
+        Intent intent = new Intent(PODBotConfigActivity.this, PrintConfirmActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToHomePage(View view){
+        // Move to the HomePageActivity
+        Intent intent = new Intent(PODBotConfigActivity.this, HomePageActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,24 +1,311 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B8B6B6"
-    tools:context=".PODBotConfigActivity">
+    android:background="#B8B6B6">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TODO: Set up user input form with 8 questions"
-        android:textColor="#CE1126"
-        android:textSize="20pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PODBot Mission Parameters"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:textColor="#CE1126"/>
+
+        <!-- Mission ID -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mission ID:"
+            android:textSize="18sp"
+            android:paddingBottom="8dp"
+            android:textColor="#CE1126"/>
+
+            <EditText
+                android:id="@+id/missionIdInput"
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Enter Mission ID"
+                android:padding="10dp" />
+
+        <!-- Fly or Drive -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Does the bot need to fly or drive?"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbFly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fly"/>
+
+            <RadioButton
+                android:id="@+id/rbDrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drive"/>
+        </RadioGroup>
+
+        <!-- Day or Night -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Will the mission be in daytime or nighttime?"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day"/>
+
+            <RadioButton
+                android:id="@+id/rbNight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Night"/>
+        </RadioGroup>
+
+        <!-- Operation Duration (Aerial) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How long must the bot be operational? (Aerial Bot)"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAerial5Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Minutes"/>
+
+            <RadioButton
+                android:id="@+id/rbAerial10Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 Minutes"/>
+
+            <RadioButton
+                android:id="@+id/rbAerial15Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15 Minutes"/>
+        </RadioGroup>
+
+        <!-- Operation Duration (Ground) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How long must the bot be operational? (Ground Bot)"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbGround5Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Minutes"/>
+
+            <RadioButton
+                android:id="@+id/rbGround10Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 Minutes"/>
+
+            <RadioButton
+                android:id="@+id/rbGround20Min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 Minutes"/>
+        </RadioGroup>
+
+        <!-- Two-way Audio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Does the bot require two-way audio?"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAudioYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+
+            <RadioButton
+                android:id="@+id/rbAudioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"/>
+        </RadioGroup>
+
+        <!-- Visual and Audio Capabilities -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How long must the bot have visual and audio capabilities?"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbVisual1hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 1 hour"/>
+
+            <RadioButton
+                android:id="@+id/rbVisual2hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 2 hours"/>
+
+            <RadioButton
+                android:id="@+id/rbVisual3hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 3 hours"/>
+        </RadioGroup>
+
+        <!-- Payload Capacity (Aerial) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What capacity must the bot be capable of carrying? (Aerial Bot)"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAerialPayload0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Additional Payload"/>
+
+            <RadioButton
+                android:id="@+id/rbAerialPayload10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 10 lbs."/>
+
+            <RadioButton
+                android:id="@+id/rbAerialPayload20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 20 lbs."/>
+        </RadioGroup>
+
+        <!-- Payload Capacity (Ground) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What capacity must the bot be capable of carrying? (Ground Bot)"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#CE1126"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbGroundPayload0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Additional Payload"/>
+
+            <RadioButton
+                android:id="@+id/rbGroundPayload5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 5 lbs."/>
+
+            <RadioButton
+                android:id="@+id/rbGroundPayload10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up to 10 lbs."/>
+        </RadioGroup>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:paddingTop="24dp">
+
+            <Button
+                android:id="@+id/btnOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:onClick="goToConfirm"
+                android:text="OK" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="goToHomePage"
+                android:text="Cancel" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
