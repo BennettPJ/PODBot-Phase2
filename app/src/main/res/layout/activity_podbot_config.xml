@@ -33,7 +33,7 @@
             <EditText
                 android:id="@+id/missionIdInput"
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="Enter Mission ID"
                 android:padding="10dp" />
@@ -48,6 +48,7 @@
             android:textColor="#CE1126"/>
 
         <RadioGroup
+            android:id="@+id/radioGroupBotType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -75,6 +76,7 @@
             android:textColor="#CE1126"/>
 
         <RadioGroup
+            android:id="@+id/radioGroupTimeOfDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
