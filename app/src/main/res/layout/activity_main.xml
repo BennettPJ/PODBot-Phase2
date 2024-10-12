@@ -10,24 +10,24 @@
         android:id="@+id/button2"
         android:layout_width="193dp"
         android:layout_height="112dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#CE1126"
         android:onClick="goToHomePage"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="575dp"
         android:layout_height="86dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextUserName"
@@ -41,28 +41,27 @@
         android:id="@+id/textView"
         android:layout_width="597dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="9dp"
         android:text="@string/welcome_to_podbot_phase_ii"
         android:textAlignment="center"
         android:textColor="#CE1126"
         android:textSize="20pt"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="40dp"
         android:text="@string/enter_name_or_employee_id_to_continue"
         android:textColor="#CE1126"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -91,12 +90,10 @@
         android:id="@+id/imageView2"
         android:layout_width="418dp"
         android:layout_height="182dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/podbot_phase_ii_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
