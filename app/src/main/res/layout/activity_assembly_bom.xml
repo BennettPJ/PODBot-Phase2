@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B8B6B6"
-    tools:context=".UserLogsActivity">
+    tools:context=".AssemblyBomActivity">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/button8"
         android:layout_width="193dp"
         android:layout_height="106dp"
         android:layout_marginTop="52dp"
@@ -21,10 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TODO: Set up user logging functionality"
+        android:text="TODO: Set up Assembly Instructions and BOM functionality"
         android:textColor="#CE1126"
         android:textSize="20pt"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,5 +33,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

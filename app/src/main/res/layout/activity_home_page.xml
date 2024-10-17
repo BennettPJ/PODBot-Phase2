@@ -14,13 +14,14 @@
         android:layout_height="106dp"
         android:layout_marginStart="200dp"
         android:backgroundTint="#CE1126"
-        android:text="View blueprints"
+        android:onClick="goToAssemblyBOM"
+        android:text="View Assembly Instructions + BOM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
+        app:layout_constraintVertical_bias="0.903" />
 
     <Button
         android:id="@+id/button6"
@@ -28,10 +29,11 @@
         android:layout_height="106dp"
         android:layout_marginStart="200dp"
         android:backgroundTint="#CE1126"
+        android:onClick="goToPrintSts"
         android:text="View printer status"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.664" />
@@ -40,16 +42,15 @@
         android:id="@+id/button3"
         android:layout_width="193dp"
         android:layout_height="106dp"
-        android:layout_marginStart="277dp"
         android:backgroundTint="#CE1126"
+        android:onClick="goToDataLink"
         android:text="View active Data-Links"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintHorizontal_bias="0.598"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toEndOf="@+id/button6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.665" />
+        app:layout_constraintVertical_bias="0.664" />
 
     <Button
         android:id="@+id/button4"
@@ -73,7 +74,7 @@
         android:text="View User Logs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.386" />

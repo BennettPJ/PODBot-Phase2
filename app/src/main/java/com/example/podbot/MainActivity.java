@@ -41,4 +41,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void goToUserManual(View view) {
+        Intent intent = new Intent(MainActivity.this, UserManualActivity.class);
+        startActivity(intent);
+    }
+
 }

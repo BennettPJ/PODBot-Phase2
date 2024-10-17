@@ -10,17 +10,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class UserLogsActivity extends AppCompatActivity {
+public class UserManualActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_logs);
+        setContentView(R.layout.activity_user_manual);
     }
 
-    public void goToHome(View view) {
-        // Go back to the home page
-        Intent intent = new Intent(UserLogsActivity.this, HomePageActivity.class);
+    public void goToLogin(View view) {
+        Intent intent = new Intent(UserManualActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

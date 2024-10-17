@@ -45,4 +45,20 @@ public class HomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(HomePageActivity.this, UserLogsActivity.class);
         startActivity(intent);
     }
+
+    public void goToPrintSts(View view) {
+        Intent intent = new Intent(HomePageActivity.this, PrintStsActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToDataLink(View view) {
+        Intent intent = new Intent(HomePageActivity.this, DataLinkActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToAssemblyBOM(View view) {
+        Intent intent = new Intent(HomePageActivity.this, AssemblyBomActivity.class);
+        startActivity(intent);
+    }
+
 }
