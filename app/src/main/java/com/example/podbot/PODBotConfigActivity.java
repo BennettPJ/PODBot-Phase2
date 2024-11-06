@@ -5,15 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class PODBotConfigActivity extends AppCompatActivity {
 
@@ -22,6 +19,29 @@ public class PODBotConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_podbot_config);
 
+        // Reference to Mission ID input and bot type selection group
+        EditText missionID = findViewById(R.id.missionIdInput);
+        RadioGroup radioGroupBotType = findViewById(R.id.radioGroupBotType);
+
+        // References to AirBot and GroundBot sections for visibility control
+        final LinearLayout airBotSection = findViewById(R.id.airBotSection);
+        final LinearLayout groundBotSection = findViewById(R.id.groundBotSection);
+
+        // Set up listener for bot type selection
+        radioGroupBotType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rbAirBot) {
+                    airBotSection.setVisibility(View.VISIBLE);
+                    groundBotSection.setVisibility(View.GONE);
+                } else if (checkedId == R.id.rbGroundBot) {
+                    groundBotSection.setVisibility(View.VISIBLE);
+                    airBotSection.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        // Button to submit configuration
         Button submitButton = findViewById(R.id.btnOk);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,20 +51,17 @@ public class PODBotConfigActivity extends AppCompatActivity {
         });
     }
 
-    public void goToConfirm(View view){
-        // Move to the PrintConfirmActivity
+    public void goToConfirm(View view) {
         Intent intent = new Intent(PODBotConfigActivity.this, PrintConfirmActivity.class);
         startActivity(intent);
     }
 
-    public void goToHomePage(View view){
-        // Move to the HomePageActivity
+    public void goToHomePage(View view) {
         Intent intent = new Intent(PODBotConfigActivity.this, HomePageActivity.class);
         startActivity(intent);
     }
 
     public void submitConfig(View view) {
-        // Get the Mission ID
         EditText missionID = findViewById(R.id.missionIdInput);
         String missionIDValue = missionID.getText().toString().trim();
 
@@ -53,39 +70,22 @@ public class PODBotConfigActivity extends AppCompatActivity {
             return;
         }
 
-        // Get selected Bot Type (Fly or Drive)
+        // Capture selected bot type (AirBot or GroundBot)
         RadioGroup radioGroupBotType = findViewById(R.id.radioGroupBotType);
         int selectedBotId = radioGroupBotType.getCheckedRadioButtonId();
 
         if (selectedBotId == -1) {
-            Toast.makeText(this, "Please select whether the bot flies or drives", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select whether the bot is GroundBot or AirBot", Toast.LENGTH_SHORT).show();
             return;
         }
 
         RadioButton selectedBotType = findViewById(selectedBotId);
         String botType = selectedBotType.getText().toString();
 
-        // Get selected Time of Day (Day or Night)
-        RadioGroup radioGroupTimeOfDay = findViewById(R.id.radioGroupTimeOfDay);
-        int selectedTimeId = radioGroupTimeOfDay.getCheckedRadioButtonId();
-
-        if (selectedTimeId == -1) {
-            Toast.makeText(this, "Please select the time of day for the mission", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        RadioButton selectedTimeOfDay = findViewById(selectedTimeId);
-        String timeOfDay = selectedTimeOfDay.getText().toString();
-
-        // Prepare an Intent to pass the data to the next activity
+        // Intent to pass data to the confirmation page
         Intent intent = new Intent(this, PrintConfirmActivity.class);
         intent.putExtra("missionID", missionIDValue);
         intent.putExtra("botType", botType);
-        intent.putExtra("timeOfDay", timeOfDay);
-        //if()
-
-        // Start the new activity
         startActivity(intent);
     }
-
 }
