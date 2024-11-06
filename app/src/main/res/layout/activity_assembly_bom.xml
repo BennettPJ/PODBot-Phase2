@@ -20,12 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Previous Page Button -->
-
-    <!-- Next Page Button -->
-
-    <!-- Zoom In Button -->
-
     <Button
         android:id="@+id/prevPageButton"
         android:layout_width="wrap_content"
