@@ -39,22 +39,6 @@
             android:padding="10dp" />
 
         <!-- Is this Mission Tandem? -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Is this Mission Tandem (GroundBot and AirBot)?"
-            android:textSize="18sp"
-            android:paddingTop="16dp"
-            android:textColor="#CE1126"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroupTandem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/rbTandemYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes"/>
-            <RadioButton android:id="@+id/rbTandemNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No"/>
-        </RadioGroup>
 
         <!-- Is it GroundBot or AirBot? -->
         <TextView
@@ -95,7 +79,7 @@
 
             <!-- Light Conditions for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="What light conditions will the AirBot expect?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupLightConditionsAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBotDaytime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Daytime"/>
                 <RadioButton android:id="@+id/rbAirBotNighttime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nighttime"/>
                 <RadioButton android:id="@+id/rbAirBotBoth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Both"/>
@@ -103,7 +87,7 @@
 
             <!-- Operation Time for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How long must the AirBot be operational?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupOperationTimeAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBot15Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15 minutes"/>
                 <RadioButton android:id="@+id/rbAirBot30Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30 minutes"/>
                 <RadioButton android:id="@+id/rbAirBot45Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="45 minutes"/>
@@ -112,14 +96,14 @@
 
             <!-- 2-Way Communication for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Does the AirBot require 2-way communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupCommAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBotCommYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes"/>
                 <RadioButton android:id="@+id/rbAirBotCommNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No"/>
             </RadioGroup>
 
             <!-- 2-Way Communication Range for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How far will the AirBot need 2-way communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupRangeAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBotRange250" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="250 meters"/>
                 <RadioButton android:id="@+id/rbAirBotRange500" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="500 meters"/>
                 <RadioButton android:id="@+id/rbAirBotRange750" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="750 meters"/>
@@ -128,7 +112,7 @@
 
             <!-- Visual Communication for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How long does the AirBot need visual communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupVisualAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBotVisual30" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30 minutes"/>
                 <RadioButton android:id="@+id/rbAirBotVisual60" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="60 minutes"/>
                 <RadioButton android:id="@+id/rbAirBotVisual90" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="90 minutes"/>
@@ -137,7 +121,7 @@
 
             <!-- Payload Capacity for AirBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How much payload will the AirBot need to carry?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupPayloadAirBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbAirBotPayload0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 pounds"/>
                 <RadioButton android:id="@+id/rbAirBotPayload5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 pounds"/>
                 <RadioButton android:id="@+id/rbAirBotPayload10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10 pounds"/>
@@ -155,7 +139,7 @@
 
             <!-- Light Conditions for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="What light conditions will the GroundBot expect?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupLightConditionsGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBotDaytime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Daytime"/>
                 <RadioButton android:id="@+id/rbGroundBotNighttime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nighttime"/>
                 <RadioButton android:id="@+id/rbGroundBotBoth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Both"/>
@@ -163,7 +147,7 @@
 
             <!-- Operation Time for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How long must the GroundBot be operational?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupOperationTimeGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBot180Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="180 minutes"/>
                 <RadioButton android:id="@+id/rbGroundBot360Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="360 minutes"/>
                 <RadioButton android:id="@+id/rbGroundBot480Min" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="480 minutes"/>
@@ -172,14 +156,14 @@
 
             <!-- 2-Way Communication for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Does the GroundBot require 2-way communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupCommGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBotCommYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes"/>
                 <RadioButton android:id="@+id/rbGroundBotCommNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No"/>
             </RadioGroup>
 
             <!-- 2-Way Communication Range for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How far will the GroundBot need 2-way communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupRangeGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBotRange250" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="250 meters"/>
                 <RadioButton android:id="@+id/rbGroundBotRange500" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="500 meters"/>
                 <RadioButton android:id="@+id/rbGroundBotRange750" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="750 meters"/>
@@ -188,7 +172,7 @@
 
             <!-- Visual Communication for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How long does the GroundBot need visual communication?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupVisualGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBotVisual180" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="180 minutes"/>
                 <RadioButton android:id="@+id/rbGroundBotVisual360" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="360 minutes"/>
                 <RadioButton android:id="@+id/rbGroundBotVisual480" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="480 minutes"/>
@@ -197,7 +181,7 @@
 
             <!-- Payload Capacity for GroundBot -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How much payload will the GroundBot need to carry?" android:textSize="18sp" android:textColor="#CE1126"/>
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioGroup android:id="@+id/radioGroupPayloadGroundBot" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <RadioButton android:id="@+id/rbGroundBotPayload0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 pounds"/>
                 <RadioButton android:id="@+id/rbGroundBotPayload5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 pounds"/>
                 <RadioButton android:id="@+id/rbGroundBotPayload10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10 pounds"/>

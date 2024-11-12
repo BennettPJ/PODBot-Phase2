@@ -82,10 +82,45 @@ public class PODBotConfigActivity extends AppCompatActivity {
         RadioButton selectedBotType = findViewById(selectedBotId);
         String botType = selectedBotType.getText().toString();
 
-        // Intent to pass data to the confirmation page
+        // Initialize intent to pass data to PrintConfirmActivity
         Intent intent = new Intent(this, PrintConfirmActivity.class);
         intent.putExtra("missionID", missionIDValue);
         intent.putExtra("botType", botType);
+
+        // Collect answers based on the selected bot type
+        if (botType.equals("AirBot")) {
+            // AirBot-specific selections
+            RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
+            RadioButton rbAirBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeAirBot)).getCheckedRadioButtonId());
+            RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
+            RadioButton rbAirBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeAirBot)).getCheckedRadioButtonId());
+            RadioButton rbAirBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualAirBot)).getCheckedRadioButtonId());
+            RadioButton rbAirBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadAirBot)).getCheckedRadioButtonId());
+
+            intent.putExtra("airBotLight", rbAirBotLight.getText().toString());
+            intent.putExtra("airBotOperationTime", rbAirBotOperationTime.getText().toString());
+            intent.putExtra("airBotComm", rbAirBotComm.getText().toString());
+            intent.putExtra("airBotRange", rbAirBotRange.getText().toString());
+            intent.putExtra("airBotVisual", rbAirBotVisual.getText().toString());
+            intent.putExtra("airBotPayload", rbAirBotPayload.getText().toString());
+
+        } else if (botType.equals("GroundBot")) {
+            // GroundBot-specific selections
+            RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
+            RadioButton rbGroundBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeGroundBot)).getCheckedRadioButtonId());
+            RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
+            RadioButton rbGroundBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeGroundBot)).getCheckedRadioButtonId());
+            RadioButton rbGroundBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualGroundBot)).getCheckedRadioButtonId());
+            RadioButton rbGroundBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadGroundBot)).getCheckedRadioButtonId());
+
+            intent.putExtra("groundBotLight", rbGroundBotLight.getText().toString());
+            intent.putExtra("groundBotOperationTime", rbGroundBotOperationTime.getText().toString());
+            intent.putExtra("groundBotComm", rbGroundBotComm.getText().toString());
+            intent.putExtra("groundBotRange", rbGroundBotRange.getText().toString());
+            intent.putExtra("groundBotVisual", rbGroundBotVisual.getText().toString());
+            intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
+        }
+
         startActivity(intent);
     }
 }
