@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("USER_NAME", userName);
             editor.apply();  // Save the data
 
+            // Log the login action using the AuditLogger
+            AuditLogger.logAction(this, "login", userName);
+
             // Move to the HomePageActivity
             Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
             startActivity(intent);

@@ -1,5 +1,6 @@
 package com.example.podbot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import java.text.MessageFormat;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    private String userName; // Store the username for use in logout
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Retrieve the stored user's name from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String userName = sharedPreferences.getString("USER_NAME", "Guest");
+        userName = sharedPreferences.getString("USER_NAME", "Guest");
 
         // Find the TextView by its ID
         TextView textViewUserName = findViewById(R.id.textViewUserName);
@@ -31,9 +34,19 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void goToLogOut(View view) {
-        // Move to the HomePageActivity
+        // Log the logout action using the AuditLogger
+        AuditLogger.logAction(this, "logout", userName);
+
+        // Clear the username from SharedPreferences if needed
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.apply();
+
+        // Move back to the MainActivity
         Intent intent = new Intent(HomePageActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Clear back stack
         startActivity(intent);
+        finish(); // Close HomePageActivity
     }
 
     public void goToPODBotConfig(View view) {
