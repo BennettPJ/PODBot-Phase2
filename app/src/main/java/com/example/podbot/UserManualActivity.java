@@ -35,10 +35,14 @@ public class UserManualActivity extends AppCompatActivity {
     private float scaleFactor = 1.0f; // Initial zoom level
     private Bitmap currentBitmap;
 
+    private String sourcePage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_manual);
+
+        sourcePage = getIntent().getStringExtra("source");
         // Find ImageView for displaying PDF
         pdfImageView = findViewById(R.id.pdfImageView);
 
@@ -152,7 +156,13 @@ public class UserManualActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
-        Intent intent = new Intent(UserManualActivity.this, MainActivity.class);
-        startActivity(intent);
+        if(sourcePage.equals("HomePage")){
+            Intent intent = new Intent(UserManualActivity.this, HomePageActivity.class);
+            startActivity(intent);
+        }
+        else if(sourcePage.equals("LoginPage")){
+            Intent intent = new Intent(UserManualActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

@@ -9,6 +9,18 @@
     tools:context=".HomePageActivity">
 
     <Button
+        android:id="@+id/button15"
+        android:layout_width="193dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="goToUserManual"
+        android:text="FAQ"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/button7"
         android:layout_width="193dp"
         android:layout_height="106dp"

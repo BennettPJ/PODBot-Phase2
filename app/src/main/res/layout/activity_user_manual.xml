@@ -16,7 +16,7 @@
         android:layout_marginEnd="48dp"
         android:background="@drawable/rounded_button"
         android:onClick="goToLogin"
-        android:text="Back to Login"
+        android:text="Back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

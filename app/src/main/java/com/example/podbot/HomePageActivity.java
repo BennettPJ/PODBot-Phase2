@@ -74,4 +74,10 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToUserManual(View view) {
+        Intent intent = new Intent(HomePageActivity.this, UserManualActivity.class);
+        intent.putExtra("source", "HomePage");
+        startActivity(intent);
+    }
+
 }

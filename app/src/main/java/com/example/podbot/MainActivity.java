@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToUserManual(View view) {
         Intent intent = new Intent(MainActivity.this, UserManualActivity.class);
+        intent.putExtra("source", "LoginPage");
         startActivity(intent);
     }
 
