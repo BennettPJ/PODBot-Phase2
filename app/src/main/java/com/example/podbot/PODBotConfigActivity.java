@@ -28,27 +28,19 @@ public class PODBotConfigActivity extends AppCompatActivity {
         final LinearLayout groundBotSection = findViewById(R.id.groundBotSection);
 
         // Set up listener for bot type selection
-        radioGroupBotType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rbAirBot) {
-                    airBotSection.setVisibility(View.VISIBLE);
-                    groundBotSection.setVisibility(View.GONE);
-                } else if (checkedId == R.id.rbGroundBot) {
-                    groundBotSection.setVisibility(View.VISIBLE);
-                    airBotSection.setVisibility(View.GONE);
-                }
+        radioGroupBotType.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbAirBot) {
+                airBotSection.setVisibility(View.VISIBLE);
+                groundBotSection.setVisibility(View.GONE);
+            } else if (checkedId == R.id.rbGroundBot) {
+                groundBotSection.setVisibility(View.VISIBLE);
+                airBotSection.setVisibility(View.GONE);
             }
         });
 
         // Button to submit configuration
         Button submitButton = findViewById(R.id.btnOk);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                submitConfig(view);
-            }
-        });
+        submitButton.setOnClickListener(this::submitConfig);
     }
 
     public void goToConfirm(View view) {
@@ -82,6 +74,13 @@ public class PODBotConfigActivity extends AppCompatActivity {
         RadioButton selectedBotType = findViewById(selectedBotId);
         String botType = selectedBotType.getText().toString();
 
+        // Perform error checking for radio button selections
+        if (botType.equals("AirBot") && !validateAirBotSelections()) {
+            return; // Validation failed for AirBot
+        } else if (botType.equals("GroundBot") && !validateGroundBotSelections()) {
+            return; // Validation failed for GroundBot
+        }
+
         // Initialize intent to pass data to PrintConfirmActivity
         Intent intent = new Intent(this, PrintConfirmActivity.class);
         intent.putExtra("missionID", missionIDValue);
@@ -89,38 +88,110 @@ public class PODBotConfigActivity extends AppCompatActivity {
 
         // Collect answers based on the selected bot type
         if (botType.equals("AirBot")) {
-            // AirBot-specific selections
-            RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
-            RadioButton rbAirBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeAirBot)).getCheckedRadioButtonId());
-            RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
-            RadioButton rbAirBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeAirBot)).getCheckedRadioButtonId());
-            RadioButton rbAirBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualAirBot)).getCheckedRadioButtonId());
-            RadioButton rbAirBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadAirBot)).getCheckedRadioButtonId());
-
-            intent.putExtra("airBotLight", rbAirBotLight.getText().toString());
-            intent.putExtra("airBotOperationTime", rbAirBotOperationTime.getText().toString());
-            intent.putExtra("airBotComm", rbAirBotComm.getText().toString());
-            intent.putExtra("airBotRange", rbAirBotRange.getText().toString());
-            intent.putExtra("airBotVisual", rbAirBotVisual.getText().toString());
-            intent.putExtra("airBotPayload", rbAirBotPayload.getText().toString());
-
+            collectAirBotData(intent);
         } else if (botType.equals("GroundBot")) {
-            // GroundBot-specific selections
-            RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
-            RadioButton rbGroundBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeGroundBot)).getCheckedRadioButtonId());
-            RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
-            RadioButton rbGroundBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeGroundBot)).getCheckedRadioButtonId());
-            RadioButton rbGroundBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualGroundBot)).getCheckedRadioButtonId());
-            RadioButton rbGroundBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadGroundBot)).getCheckedRadioButtonId());
-
-            intent.putExtra("groundBotLight", rbGroundBotLight.getText().toString());
-            intent.putExtra("groundBotOperationTime", rbGroundBotOperationTime.getText().toString());
-            intent.putExtra("groundBotComm", rbGroundBotComm.getText().toString());
-            intent.putExtra("groundBotRange", rbGroundBotRange.getText().toString());
-            intent.putExtra("groundBotVisual", rbGroundBotVisual.getText().toString());
-            intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
+            collectGroundBotData(intent);
         }
 
         startActivity(intent);
+    }
+
+    private boolean validateAirBotSelections() {
+        // Validate each AirBot-specific radio group
+        if (!isRadioGroupChecked(R.id.radioGroupLightConditionsAirBot)) {
+            showError("Please select light conditions for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupOperationTimeAirBot)) {
+            showError("Please select operation time for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupCommAirBot)) {
+            showError("Please select communication requirements for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupRangeAirBot)) {
+            showError("Please select range for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupVisualAirBot)) {
+            showError("Please select visual requirements for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupPayloadAirBot)) {
+            showError("Please select payload capacity for AirBot.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateGroundBotSelections() {
+        // Validate each GroundBot-specific radio group
+        if (!isRadioGroupChecked(R.id.radioGroupLightConditionsGroundBot)) {
+            showError("Please select light conditions for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupOperationTimeGroundBot)) {
+            showError("Please select operation time for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupCommGroundBot)) {
+            showError("Please select communication requirements for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupRangeGroundBot)) {
+            showError("Please select range for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupVisualGroundBot)) {
+            showError("Please select visual requirements for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupPayloadGroundBot)) {
+            showError("Please select payload capacity for GroundBot.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isRadioGroupChecked(int groupId) {
+        RadioGroup group = findViewById(groupId);
+        return group.getCheckedRadioButtonId() != -1;
+    }
+
+    private void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void collectAirBotData(Intent intent) {
+        RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadAirBot)).getCheckedRadioButtonId());
+
+        intent.putExtra("airBotLight", rbAirBotLight.getText().toString());
+        intent.putExtra("airBotOperationTime", rbAirBotOperationTime.getText().toString());
+        intent.putExtra("airBotComm", rbAirBotComm.getText().toString());
+        intent.putExtra("airBotRange", rbAirBotRange.getText().toString());
+        intent.putExtra("airBotVisual", rbAirBotVisual.getText().toString());
+        intent.putExtra("airBotPayload", rbAirBotPayload.getText().toString());
+    }
+
+    private void collectGroundBotData(Intent intent) {
+        RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadGroundBot)).getCheckedRadioButtonId());
+
+        intent.putExtra("groundBotLight", rbGroundBotLight.getText().toString());
+        intent.putExtra("groundBotOperationTime", rbGroundBotOperationTime.getText().toString());
+        intent.putExtra("groundBotComm", rbGroundBotComm.getText().toString());
+        intent.putExtra("groundBotRange", rbGroundBotRange.getText().toString());
+        intent.putExtra("groundBotVisual", rbGroundBotVisual.getText().toString());
+        intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
     }
 }
