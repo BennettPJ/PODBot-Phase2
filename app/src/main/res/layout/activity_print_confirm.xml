@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B8B6B6"
+        android:background="@color/background_grey"
         android:onClick="backToConfig"
         android:orientation="vertical"
         android:paddingHorizontal="16dp">
@@ -25,7 +25,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="PODBot Mission Confirmation"
-            android:textColor="#CE1126"
+            android:textColor="@color/Raytheon_Red"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -188,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="#CE1126"
+                android:backgroundTint="@color/Raytheon_Red"
                 android:onClick="backToConfig"
                 android:padding="12dp"
                 android:text="Back"
@@ -198,7 +198,7 @@
                 android:id="@+id/btnContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#CE1126"
+                android:backgroundTint="@color/Raytheon_Red"
                 android:onClick="goToPrint"
                 android:padding="12dp"
                 android:text="Print"

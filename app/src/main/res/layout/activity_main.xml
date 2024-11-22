@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B8B6B6">
+    android:background="@color/background_grey">
 
     <Button
         android:id="@+id/button2"
         android:layout_width="193dp"
         android:layout_height="112dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#CE1126"
+        android:backgroundTint="@color/Raytheon_Red"
         android:onClick="goToHomePage"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         android:layout_marginTop="9dp"
         android:text="@string/welcome_to_podbot_phase_ii"
         android:textAlignment="center"
-        android:textColor="#CE1126"
+        android:textColor="@color/Raytheon_Red"
         android:textSize="20pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/enter_name_or_employee_id_to_continue"
-        android:textColor="#CE1126"
+        android:textColor="@color/Raytheon_Red"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
