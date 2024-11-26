@@ -164,5 +164,9 @@ public class UserManualActivity extends AppCompatActivity {
             Intent intent = new Intent(UserManualActivity.this, MainActivity.class);
             startActivity(intent);
         }
+        else if(sourcePage.equals("PrintSts")){
+            Intent intent = new Intent(UserManualActivity.this, PrintStsActivity.class);
+            startActivity(intent);
+        }
     }
 }
