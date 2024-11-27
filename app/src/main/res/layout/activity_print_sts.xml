@@ -9,6 +9,24 @@
     tools:context=".PrintStsActivity">
 
     <!-- Back to Home Button -->
+
+    <TextView
+        android:id="@+id/printerStatusText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Open the Bambu Handy App, navigate to user (FIXME), and print the below files."
+        android:textColor="@color/Raytheon_Red"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/printerStatusText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/openBambuHandyButton" />
+
     <Button
         android:id="@+id/button10"
         android:layout_width="wrap_content"

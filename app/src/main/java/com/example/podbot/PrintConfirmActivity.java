@@ -109,7 +109,7 @@ public class PrintConfirmActivity extends AppCompatActivity {
 
             //FIXME: Remove the following lines -- Just for Demo purpose
             PrinterStatusIntent.putExtra("MissionID", missionID);
-            PrinterStatusIntent.putExtra("Printer-1", "AB-Arms");
+            PrinterStatusIntent.putExtra("Printer-1", "AB_Arms");
             PrinterStatusIntent.putExtra("Printer-2", "AB-Top_plate");
             PrinterStatusIntent.putExtra("Printer-3", "AB-Bottom_plate");
 
