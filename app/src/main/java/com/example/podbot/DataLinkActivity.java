@@ -83,9 +83,9 @@ public class DataLinkActivity extends AppCompatActivity {
         }
     }
 
-    public void goToHome(View view) {
+    public void goToBack(View view) {
         // Go back to the home page
-        Intent intent = new Intent(DataLinkActivity.this, HomePageActivity.class);
+        Intent intent = new Intent(DataLinkActivity.this, DataLinkGateActivity.class);
         startActivity(intent);
     }
 }
