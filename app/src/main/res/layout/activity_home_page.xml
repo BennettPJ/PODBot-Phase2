@@ -55,7 +55,7 @@
         android:layout_width="193dp"
         android:layout_height="106dp"
         android:backgroundTint="@color/Raytheon_Red"
-        android:onClick="goToDataLink"
+        android:onClick="goToDataLinkGate"
         android:text="View active Data-Links"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

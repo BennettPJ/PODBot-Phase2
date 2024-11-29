@@ -64,7 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToDataLink(View view) {
+    public void goToDataLinkGate(View view) {
         Intent intent = new Intent(HomePageActivity.this, DataLinkGateActivity.class);
         startActivity(intent);
     }
