@@ -2,34 +2,103 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     tools:context=".LDVidActivity">
 
-    <!-- Camera SurfaceView -->
+    <!-- Back to Home Button -->
 
-    <!-- Back Button -->
-    <SurfaceView
-        android:id="@+id/camera_view"
-        android:layout_width="1110dp"
-        android:layout_height="484dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/printerStatusText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:text="Open the SKYDROID app to access video streaming."
+        android:textColor="@color/Raytheon_Red"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintTop_toBottomOf="@id/openBambuHandyButton" />
+
+    <!-- New TextView for Airplane Mode Status -->
+    <TextView
+        android:id="@+id/airplaneModeStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Airplane mode needs to be enabled for app to work.\nCurrent status of Airplane mode: Unknown"
+        android:textColor="@color/Raytheon_Red"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/printerStatusText2" />
 
     <Button
-        android:id="@+id/button18"
-        android:layout_width="193dp"
-        android:layout_height="106dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="76dp"
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
         android:onClick="goToBack"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Open Bambu Handy Button -->
+    <Button
+        android:id="@+id/openBambuHandyButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="openSKYDROIDapp"
+        android:text="Open SKYDROID app"
+        app:layout_constraintEnd_toStartOf="@id/goToDownloadPageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button10" />
+
+    <!-- Go to Bambu Handy Download Page Button -->
+    <Button
+        android:id="@+id/goToDownloadPageButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="goToDownloadPage"
+        android:text="Download SKYDROID app"
+        app:layout_constraintEnd_toStartOf="@id/openUserManualButton"
+        app:layout_constraintStart_toEndOf="@id/openBambuHandyButton"
+        app:layout_constraintTop_toBottomOf="@id/button10" />
+
+    <!-- User Manual Button -->
+    <Button
+        android:id="@+id/openUserManualButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="openUserManual"
+        android:text="User Manual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/goToDownloadPageButton"
+        app:layout_constraintTop_toBottomOf="@id/button10" />
+
+    <!-- Printer Status Text -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

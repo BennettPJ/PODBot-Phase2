@@ -168,5 +168,9 @@ public class UserManualActivity extends AppCompatActivity {
             Intent intent = new Intent(UserManualActivity.this, PrintStsActivity.class);
             startActivity(intent);
         }
+        else if(sourcePage.equals("LDVid")){
+            Intent intent = new Intent(UserManualActivity.this, LDVidActivity.class);
+            startActivity(intent);
+        }
     }
 }
