@@ -172,5 +172,9 @@ public class UserManualActivity extends AppCompatActivity {
             Intent intent = new Intent(UserManualActivity.this, LDVidActivity.class);
             startActivity(intent);
         }
+        else if(sourcePage.equals("LANPage")){
+            Intent intent = new Intent(UserManualActivity.this, LANPrintActivity.class);
+            startActivity(intent);
+        }
     }
 }

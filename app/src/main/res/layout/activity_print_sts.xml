@@ -10,6 +10,18 @@
 
     <!-- Back to Home Button -->
 
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="goToLAN"
+        android:text="LAN Mode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/printerStatusText2"
         android:layout_width="wrap_content"
@@ -17,9 +29,9 @@
         android:layout_margin="16dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="Open the Bambu Handy App, navigate to user (FIXME), and print the below files."
+        android:text="Open the Bambu Handy App, navigate to user PODBotP2_Design, and print the below files."
         android:textColor="@color/Raytheon_Red"
-        android:textSize="32sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/printerStatusText"
         app:layout_constraintEnd_toEndOf="parent"

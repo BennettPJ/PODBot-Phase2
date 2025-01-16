@@ -70,4 +70,9 @@ public class PrintStsActivity extends AppCompatActivity {
         intent.putExtra("source", "PrintSts");
         startActivity(intent);
     }
+
+    public void goToLAN(View view){
+        Intent intent = new Intent(PrintStsActivity.this, LANPrintActivity.class);
+        startActivity(intent);
+    }
 }
