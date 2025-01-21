@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PODBotConfigActivity extends AppCompatActivity {
+    private String botConfigBinary = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,30 @@ public class PODBotConfigActivity extends AppCompatActivity {
     }
 
     private void collectAirBotData(Intent intent) {
+        botConfigBinary = "00"; // The starting code for AirBot
+
+        // Append binary for Light Conditions
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupLightConditionsAirBot);
+
+        // Append binary for Operation Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupOperationTimeAirBot);
+
+        // Append binary for Communication Requirements
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCommAirBot);
+
+        // Append binary for Range
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupRangeAirBot);
+
+        // Append binary for Visual Communication
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupVisualAirBot);
+
+        // Append binary for Payload
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupPayloadAirBot);
+
+        //store botConfigBinary so its globally available
+        saveBotConfigBinary(botConfigBinary);
+
+        // Retrieve selected options as strings and pass them to the intent
         RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
         RadioButton rbAirBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeAirBot)).getCheckedRadioButtonId());
         RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
@@ -180,6 +205,30 @@ public class PODBotConfigActivity extends AppCompatActivity {
     }
 
     private void collectGroundBotData(Intent intent) {
+        botConfigBinary = "01"; // The starting code for GroundBot
+
+        // Append binary for Light Conditions
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupLightConditionsGroundBot);
+
+        // Append binary for Operation Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupOperationTimeGroundBot);
+
+        // Append binary for Communication Requirements
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCommGroundBot);
+
+        // Append binary for Range
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupRangeGroundBot);
+
+        // Append binary for Visual Communication
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupVisualGroundBot);
+
+        // Append binary for Payload
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupPayloadGroundBot);
+
+        //store botConfigBinary so its globally available
+        saveBotConfigBinary(botConfigBinary);
+
+        // Retrieve selected options as strings and pass them to the intent
         RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
         RadioButton rbGroundBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeGroundBot)).getCheckedRadioButtonId());
         RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
@@ -194,4 +243,26 @@ public class PODBotConfigActivity extends AppCompatActivity {
         intent.putExtra("groundBotVisual", rbGroundBotVisual.getText().toString());
         intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
     }
+
+    private String getBinaryFromSelectedOption(int radioGroupId) {
+        RadioGroup radioGroup = findViewById(radioGroupId);
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        View selectedButton = findViewById(selectedId);
+
+        // Loop through the RadioGroup children to find the index of the selected button
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            if (radioGroup.getChildAt(i) == selectedButton) {
+                return String.format("%2s", Integer.toBinaryString(i)).replace(' ', '0'); // Convert index to 2-bit binary
+            }
+        }
+        return "00"; // Default value if no button is selected
+    }
+
+    private void saveBotConfigBinary(String config) {
+        getSharedPreferences("AppConfig", MODE_PRIVATE)
+                .edit()
+                .putString("botConfigBinary", config)
+                .apply();
+    }
+
 }

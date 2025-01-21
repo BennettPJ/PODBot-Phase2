@@ -11,6 +11,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
@@ -61,7 +63,22 @@ public class AssemblyBomActivity extends AppCompatActivity {
 
     // Opens the PDF file using PdfRenderer
     private void openPdfRenderer() throws IOException {
-        File file = new File(getCacheDir(), "AirBot_BOM_Assembly.pdf");
+        String config = getBotConfigBinary();
+        String fileToOpen = "";
+        if (config.equals("DEFAULT_BINARY")) {
+            Toast.makeText(this, "No configuration found. Please set up a configuration.", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            //FIXME: Get actual binaries
+            if(config.equals("AB Binary")){
+                fileToOpen = "AirBot_BOM_Assembly.pdf";
+            }
+            else if(config.equals("gb binary")){
+                fileToOpen = "";
+            }
+        }
+
+        File file = new File(getCacheDir(), fileToOpen);
         if (!file.exists()) {
             InputStream asset = getAssets().open("AirBot_BOM_Assembly.pdf");
             FileOutputStream output = new FileOutputStream(file);
@@ -152,5 +169,10 @@ public class AssemblyBomActivity extends AppCompatActivity {
     public void goToHome(View view) {
         Intent intent = new Intent(AssemblyBomActivity.this, HomePageActivity.class);
         startActivity(intent);
+    }
+
+    private String getBotConfigBinary() {
+        return getSharedPreferences("AppConfig", MODE_PRIVATE)
+                .getString("botConfigBinary", "DEFAULT_BINARY"); // Default case
     }
 }
