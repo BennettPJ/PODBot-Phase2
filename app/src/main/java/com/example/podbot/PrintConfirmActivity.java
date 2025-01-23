@@ -1,16 +1,12 @@
 package com.example.podbot;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class PrintConfirmActivity extends AppCompatActivity {
 
@@ -100,85 +96,72 @@ public class PrintConfirmActivity extends AppCompatActivity {
     public void goToPrint(View view) {
         // Get the intent and the data provided by the user
         Intent intent = getIntent();
-        String botType = intent.getStringExtra("botType");
-
         Intent PrinterStatusIntent = new Intent(PrintConfirmActivity.this, PrintStsActivity.class);
 
-        if ("AirBot".equals(botType)) {
-            // Retrieve AirBot-specific data
-            String lightConditions = intent.getStringExtra("airBotLight");
-            String NavTime = intent.getStringExtra("airBotNavTime");
-            String communication = intent.getStringExtra("airBotComm");
-            String camera = intent.getStringExtra("airBotCam");
-            String eTime = intent.getStringExtra("airBotETime");
-            String eRange = intent.getStringExtra("airBotERange");
-            String payload = intent.getStringExtra("airBotPayload");
-
-//            //FIXME: Remove the following lines -- Just for Demo purpose
-//            PrinterStatusIntent.putExtra("MissionID", missionID);
-//            PrinterStatusIntent.putExtra("Printer-1", "AB_Arms");
-//            PrinterStatusIntent.putExtra("Printer-2", "AB-Top_plate");
-//            PrinterStatusIntent.putExtra("Printer-3", "AB-Bottom_plate");
-
-            //FIXME: Add in this truth table checking
-//            if("Daytime".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 1
-//            }
-//            else if("Nighttime".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 2
-//            }
-//            else if("Both".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 3
-//            }
-
-
+        String config = getBotConfigBinary();
+        //Printer variables
+        String Printer1 = "";
+        String Printer2 = "";
+        String Printer3 = "";
+        String BotToPrint = "";
+        //FIXME: might refactor to nest if statements in an if-else and split out the 2 left most bits for AB and GB
+        if(config.trim().equals("0110010000000010")){
+            //AirBot FR-2
+            BotToPrint = "AirBot Mission-" + missionID;
+            Printer1 = "AB_FR2_arms";
+            Printer2 = "AB_FR_2_Bottom_Plate";
+            Printer3 = "AB_FR_2_Top_Plate_Hooks_Landing_Gear";
         }
-        else if ("GroundBot".equals(botType)) {
-            // Retrieve GroundBot-specific data
-            String lightConditions = intent.getStringExtra("groundBotLight");
-            String operationTime = intent.getStringExtra("groundBotOperationTime");
-            String communication = intent.getStringExtra("groundBotComm");
-            String range = intent.getStringExtra("groundBotRange");
-            String visualCommunication = intent.getStringExtra("groundBotVisual");
-            String payload = intent.getStringExtra("groundBotPayload");
-
-            //FIXME: Remove the following lines -- Just for Demo purpose
-            PrinterStatusIntent.putExtra("MissionID", missionID);
-            PrinterStatusIntent.putExtra("Printer-1", "GB-Front_axle");
-            PrinterStatusIntent.putExtra("Printer-2", "GB-Top_plate");
-            PrinterStatusIntent.putExtra("Printer-3", "GB-Bottom_plate");
-
-            //FIXME: Add in this truth table checking
-//            if("Daytime".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 1
-//            }
-//            else if("Nighttime".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 2
-//            }
-//            else if("Both".equals(lightConditions) && "15 minutes".equals(operationTime) &&
-//                    "Yes".equals(communication) && "250 meters".equals(range) &&
-//                    "30 minutes".equals(visualCommunication) && "0 pounds".equals(payload)
-//            ){
-//                //FIXME: BOT CONFIG 3
-//            }
+        else if(config.trim().equals("0110110000111111")){
+            //AirBot TD-1
+            BotToPrint = "AirBot Mission-" + missionID;
+            Printer1 = "AB_TD1_arms";
+            Printer2 = "AB_TD1_Bottom_Plate";
+            Printer3 = "AB_TD1_Top_Plate_Hooks_Landing_Gear";
         }
+        else if(config.trim().equals("0010010001111100")){
+            //GroundBot BP-3 and TD-1
+            BotToPrint = "GroundBot Mission-" + missionID;
+            Printer1 = "GB_BP3_TD1_Base_Frame_Back_Wall";
+            Printer2 = "GB_BP3_TD1_Front_Axle_Support_Top_Plate";
+            Printer3 = "GB_BP3_TD1_Gears";
+        }
+        else{
+            //PODBot not configured
+            BotToPrint = "PODBot Other Mission-" + missionID;
+            Printer1 = "FIXME: Generic file";
+            Printer2 = "FIXME: Generic file";
+            Printer3 = "FIXME: Generic file";
+        }
+
+        //Save the mission ID and printer files to shared preferences
+        savePrinterFiles(missionID, Printer1, Printer2, Printer3);
+
+        //Log the username and what they printed
+        AuditLogger.logAction(this, "Printed " + BotToPrint, getUsername());
 
         // Navigate to the PrintStsActivity after deciding what to print
         startActivity(PrinterStatusIntent);
+    }
+
+    private String getBotConfigBinary() {
+        return getSharedPreferences("AppConfig", MODE_PRIVATE)
+                .getString("botConfigBinary", "DEFAULT_BINARY"); // Default case
+    }
+
+    private String getUsername() {
+        // Retrieve the stored user's name from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        return sharedPreferences.getString("USER_NAME", "Guest");
+    }
+
+    private void savePrinterFiles(String missionID, String printer1, String printer2, String printer3) {
+        getSharedPreferences("PrinterFiles", MODE_PRIVATE)
+                .edit()
+                .putString("MissionID", missionID)
+                .putString("Printer1", printer1)
+                .putString("Printer2", printer2)
+                .putString("Printer3", printer3)
+                .apply();
     }
 }

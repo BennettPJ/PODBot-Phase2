@@ -2,6 +2,7 @@ package com.example.podbot;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,20 +18,20 @@ public class PrintStsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_print_sts);
 
-        // Retrieve values from the intent
-        Intent intent = getIntent();
-        String missionID = intent.getStringExtra("MissionID");
-        String printer1Status = intent.getStringExtra("Printer-1");
-        String printer2Status = intent.getStringExtra("Printer-2");
-        String printer3Status = intent.getStringExtra("Printer-3");
+        // Retrieve values from shared pref
+        SharedPreferences prefs = getSharedPreferences("PrinterFiles", MODE_PRIVATE);
+        String missionID = prefs.getString("MissionID", "Unknown");
+        String printer1 = prefs.getString("Printer1", "Error");
+        String printer2 = prefs.getString("Printer2", "Error");
+        String printer3 = prefs.getString("Printer3", "Error");
 
         // Update the TextViews with the retrieved data
         TextView printerTextView = findViewById(R.id.printerStatusText);
 
-        printerTextView.setText("Mission ID: " + (missionID != null ? missionID : "Unknown") + "\n\n" +
-                                "Bambu P1S - 1: " + (printer1Status != null ? printer1Status : "No file assigned") + "\n\n" +
-                                "Bambu P1S - 2: " + (printer2Status != null ? printer2Status : "No file assigned") + "\n\n" +
-                                "Bambu P1S - 3: " + (printer3Status != null ? printer3Status : "No file assigned")
+        printerTextView.setText("Mission ID: " + missionID + "\n\n" +
+                                "Bambu P1S - 1: " + printer1 + "\n\n" +
+                                "Bambu P1S - 2: " + printer2 + "\n\n" +
+                                "Bambu P1S - 3: " + printer3
                                 );
     }
 
