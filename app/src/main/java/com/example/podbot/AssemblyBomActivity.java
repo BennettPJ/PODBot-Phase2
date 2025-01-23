@@ -65,30 +65,35 @@ public class AssemblyBomActivity extends AppCompatActivity {
     private void openPdfRenderer() throws IOException {
         String config = getBotConfigBinary();
         String fileToOpen = "";
-        if (config.equals("DEFAULT_BINARY")) {
-            Toast.makeText(this, "No configuration found. Please set up a configuration.", Toast.LENGTH_SHORT).show();
+        //FIXME: might refactor to nest if statements in an if-else and split out the 2 left most bits for AB and GB
+        if(config.trim().equals("0110010000000010")){
+            //AirBot FR-2
+            fileToOpen = "AirBot_FR2_0110010000000010.pdf";
+        }
+        else if(config.trim().equals("0110110000111111")){
+            //AirBot TD-1
+            fileToOpen = "AirBot_TD1_0110110000111111.pdf";
+        }
+        else if(config.trim().equals("0010010001111100")){
+            //GroundBot BP-3 and TD-1
+            fileToOpen = "GroundBot_BP3_TD1_0010010001111100.pdf";
         }
         else{
-            //FIXME: Get actual binaries
-            if(config.equals("AB Binary")){
-                fileToOpen = "AirBot_BOM_Assembly.pdf";
-            }
-            else if(config.equals("gb binary")){
-                fileToOpen = "";
-            }
+            //PODBot not configured
+            fileToOpen = "Not_Configured_Display.pdf";
         }
 
+        //File file = new File(getCacheDir(), fileToOpen);
         File file = new File(getCacheDir(), fileToOpen);
-        if (!file.exists()) {
-            InputStream asset = getAssets().open("AirBot_BOM_Assembly.pdf");
-            FileOutputStream output = new FileOutputStream(file);
+        try (InputStream asset = getAssets().open(fileToOpen);
+             FileOutputStream output = new FileOutputStream(file)) {
             byte[] buffer = new byte[1024];
             int length;
             while ((length = asset.read(buffer)) > 0) {
                 output.write(buffer, 0, length);
             }
-            output.close();
-            asset.close();
+        } catch (IOException e) {
+            throw e;
         }
 
         fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);

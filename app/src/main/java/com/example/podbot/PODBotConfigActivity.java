@@ -103,20 +103,24 @@ public class PODBotConfigActivity extends AppCompatActivity {
             showError("Please select light conditions for AirBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupOperationTimeAirBot)) {
-            showError("Please select operation time for AirBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupNavTimeAirBot)) {
+            showError("Please select Navigation time for AirBot.");
             return false;
         }
         if (!isRadioGroupChecked(R.id.radioGroupCommAirBot)) {
             showError("Please select communication requirements for AirBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupRangeAirBot)) {
-            showError("Please select range for AirBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupCameraAirBot)) {
+            showError("Please select camera requirements for AirBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupVisualAirBot)) {
-            showError("Please select visual requirements for AirBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupEffectorAirBot)) {
+            showError("Please select Effector time for AirBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupEffectorRangeAirBot)) {
+            showError("Please select effector range for AirBot.");
             return false;
         }
         if (!isRadioGroupChecked(R.id.radioGroupPayloadAirBot)) {
@@ -132,20 +136,24 @@ public class PODBotConfigActivity extends AppCompatActivity {
             showError("Please select light conditions for GroundBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupOperationTimeGroundBot)) {
-            showError("Please select operation time for GroundBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupNavTimeGroundBot)) {
+            showError("Please select navigation time for GroundBot.");
             return false;
         }
         if (!isRadioGroupChecked(R.id.radioGroupCommGroundBot)) {
             showError("Please select communication requirements for GroundBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupRangeGroundBot)) {
-            showError("Please select range for GroundBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupCameraGroundBot)) {
+            showError("Please select camera requirements for GroundBot.");
             return false;
         }
-        if (!isRadioGroupChecked(R.id.radioGroupVisualGroundBot)) {
-            showError("Please select visual requirements for GroundBot.");
+        if (!isRadioGroupChecked(R.id.radioGroupETimeGroundBot)) {
+            showError("Please select effector time for GroundBot.");
+            return false;
+        }
+        if (!isRadioGroupChecked(R.id.radioGroupERangeGroundBot)) {
+            showError("Please select effector range for GroundBot.");
             return false;
         }
         if (!isRadioGroupChecked(R.id.radioGroupPayloadGroundBot)) {
@@ -164,84 +172,95 @@ public class PODBotConfigActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void collectAirBotData(Intent intent) {
-        botConfigBinary = "00"; // The starting code for AirBot
-
-        // Append binary for Light Conditions
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupLightConditionsAirBot);
-
-        // Append binary for Operation Time
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupOperationTimeAirBot);
-
-        // Append binary for Communication Requirements
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCommAirBot);
-
-        // Append binary for Range
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupRangeAirBot);
-
-        // Append binary for Visual Communication
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupVisualAirBot);
-
-        // Append binary for Payload
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupPayloadAirBot);
-
-        //store botConfigBinary so its globally available
-        saveBotConfigBinary(botConfigBinary);
-
-        // Retrieve selected options as strings and pass them to the intent
-        RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
-        RadioButton rbAirBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeAirBot)).getCheckedRadioButtonId());
-        RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
-        RadioButton rbAirBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeAirBot)).getCheckedRadioButtonId());
-        RadioButton rbAirBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualAirBot)).getCheckedRadioButtonId());
-        RadioButton rbAirBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadAirBot)).getCheckedRadioButtonId());
-
-        intent.putExtra("airBotLight", rbAirBotLight.getText().toString());
-        intent.putExtra("airBotOperationTime", rbAirBotOperationTime.getText().toString());
-        intent.putExtra("airBotComm", rbAirBotComm.getText().toString());
-        intent.putExtra("airBotRange", rbAirBotRange.getText().toString());
-        intent.putExtra("airBotVisual", rbAirBotVisual.getText().toString());
-        intent.putExtra("airBotPayload", rbAirBotPayload.getText().toString());
-    }
-
     private void collectGroundBotData(Intent intent) {
-        botConfigBinary = "01"; // The starting code for GroundBot
+        // Retrieve selected options as strings and pass them to the intent
+        RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotNavTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupNavTimeGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotCam = findViewById(((RadioGroup) findViewById(R.id.radioGroupCameraGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotETime = findViewById(((RadioGroup) findViewById(R.id.radioGroupETimeGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotERange = findViewById(((RadioGroup) findViewById(R.id.radioGroupERangeGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbGroundBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadGroundBot)).getCheckedRadioButtonId());
+
+        intent.putExtra("groundBotLight", rbGroundBotLight.getText().toString());
+        intent.putExtra("groundBotNavTime", rbGroundBotNavTime.getText().toString());
+        intent.putExtra("groundBotComm", rbGroundBotComm.getText().toString());
+        intent.putExtra("groundBotCam", rbGroundBotCam.getText().toString());
+        intent.putExtra("groundBotETime", rbGroundBotETime.getText().toString());
+        intent.putExtra("groundBotERange", rbGroundBotERange.getText().toString());
+        intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
+
+
+        botConfigBinary = "00"; // The starting code for GroundBot
 
         // Append binary for Light Conditions
         botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupLightConditionsGroundBot);
 
-        // Append binary for Operation Time
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupOperationTimeGroundBot);
+        // Append binary for Navigation Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupNavTimeGroundBot);
 
         // Append binary for Communication Requirements
         botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCommGroundBot);
 
-        // Append binary for Range
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupRangeGroundBot);
+        // Append binary for Camera Requirements
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCameraGroundBot);
 
-        // Append binary for Visual Communication
-        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupVisualGroundBot);
+        // Append binary for Effector Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupETimeGroundBot);
+
+        // Append binary for Effector Range
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupERangeGroundBot);
 
         // Append binary for Payload
         botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupPayloadGroundBot);
 
         //store botConfigBinary so its globally available
         saveBotConfigBinary(botConfigBinary);
+    }
 
+    private void collectAirBotData(Intent intent) {
         // Retrieve selected options as strings and pass them to the intent
-        RadioButton rbGroundBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsGroundBot)).getCheckedRadioButtonId());
-        RadioButton rbGroundBotOperationTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupOperationTimeGroundBot)).getCheckedRadioButtonId());
-        RadioButton rbGroundBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommGroundBot)).getCheckedRadioButtonId());
-        RadioButton rbGroundBotRange = findViewById(((RadioGroup) findViewById(R.id.radioGroupRangeGroundBot)).getCheckedRadioButtonId());
-        RadioButton rbGroundBotVisual = findViewById(((RadioGroup) findViewById(R.id.radioGroupVisualGroundBot)).getCheckedRadioButtonId());
-        RadioButton rbGroundBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadGroundBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotLight = findViewById(((RadioGroup) findViewById(R.id.radioGroupLightConditionsAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotNavTime = findViewById(((RadioGroup) findViewById(R.id.radioGroupNavTimeAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotComm = findViewById(((RadioGroup) findViewById(R.id.radioGroupCommAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotCam = findViewById(((RadioGroup) findViewById(R.id.radioGroupCameraAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotETime = findViewById(((RadioGroup) findViewById(R.id.radioGroupEffectorAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotERange = findViewById(((RadioGroup) findViewById(R.id.radioGroupEffectorRangeAirBot)).getCheckedRadioButtonId());
+        RadioButton rbAirBotPayload = findViewById(((RadioGroup) findViewById(R.id.radioGroupPayloadAirBot)).getCheckedRadioButtonId());
 
-        intent.putExtra("groundBotLight", rbGroundBotLight.getText().toString());
-        intent.putExtra("groundBotOperationTime", rbGroundBotOperationTime.getText().toString());
-        intent.putExtra("groundBotComm", rbGroundBotComm.getText().toString());
-        intent.putExtra("groundBotRange", rbGroundBotRange.getText().toString());
-        intent.putExtra("groundBotVisual", rbGroundBotVisual.getText().toString());
-        intent.putExtra("groundBotPayload", rbGroundBotPayload.getText().toString());
+        intent.putExtra("airBotLight", rbAirBotLight.getText().toString());
+        intent.putExtra("airBotNavTime", rbAirBotNavTime.getText().toString());
+        intent.putExtra("airBotComm", rbAirBotComm.getText().toString());
+        intent.putExtra("airBotCam", rbAirBotCam.getText().toString());
+        intent.putExtra("airBotETime", rbAirBotETime.getText().toString());
+        intent.putExtra("airBotERange", rbAirBotERange.getText().toString());
+        intent.putExtra("airBotPayload", rbAirBotPayload.getText().toString());
+
+        botConfigBinary = "01"; // The starting code for AirBot
+
+        // Append binary for Light Conditions
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupLightConditionsAirBot);
+
+        // Append binary for Navigation Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupNavTimeAirBot);
+
+        // Append binary for Communication Requirements
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCommAirBot);
+
+        // Append binary for Camera Requirements
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupCameraAirBot);
+
+        // Append binary for Effector Time
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupEffectorAirBot);
+
+        // Append binary for Effector Range
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupEffectorRangeAirBot);
+
+        // Append binary for Payload
+        botConfigBinary += getBinaryFromSelectedOption(R.id.radioGroupPayloadAirBot);
+
+        //store botConfigBinary so its globally available
+        saveBotConfigBinary(botConfigBinary);
     }
 
     private String getBinaryFromSelectedOption(int radioGroupId) {

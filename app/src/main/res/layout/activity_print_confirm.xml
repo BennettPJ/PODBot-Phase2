@@ -60,11 +60,11 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/airBotOperationTimeTextView"
+            android:id="@+id/airBotNavTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Operation Time (AirBot): "
+            android:text="Navigation Time (AirBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
@@ -74,27 +74,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="2-Way Communication (AirBot): "
+            android:text="2-Way Audio Communication (AirBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/airBotRangeTextView"
+            android:id="@+id/airBotCamTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Communication Range (AirBot): "
+            android:text="Camera Requirements (AirBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/airBotVisualTextView"
+            android:id="@+id/airBotETimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Visual Communication (AirBot): "
+            android:text="EffectorTime (AirBot): "
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/airBotERangeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="Effector Range (AirBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
@@ -121,11 +131,11 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/groundBotOperationTimeTextView"
+            android:id="@+id/groundBotNavigationTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Operation Time (GroundBot): "
+            android:text="Navigation Time (GroundBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
@@ -135,27 +145,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="2-Way Communication (GroundBot): "
+            android:text="2-Way Audio Communication (GroundBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/groundBotRangeTextView"
+            android:id="@+id/groundBotCamTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Communication Range (GroundBot): "
+            android:text="Camera Requirements (GroundBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/groundBotVisualTextView"
+            android:id="@+id/groundBotETimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:text="Visual Communication (GroundBot): "
+            android:text="Effector Time (GroundBot): "
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/groundBotERangeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="Effector Range (GroundBot): "
             android:textColor="#000000"
             android:textSize="18sp"
             android:visibility="gone" />

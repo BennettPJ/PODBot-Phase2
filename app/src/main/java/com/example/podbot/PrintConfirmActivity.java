@@ -37,51 +37,57 @@ public class PrintConfirmActivity extends AppCompatActivity {
         if ("AirBot".equals(botType)) {
             // AirBot-specific information
             TextView airBotLightTextView = findViewById(R.id.airBotLightTextView);
-            TextView airBotOperationTimeTextView = findViewById(R.id.airBotOperationTimeTextView);
+            TextView airBotNavTimeTextView = findViewById(R.id.airBotNavTimeTextView);
             TextView airBotCommTextView = findViewById(R.id.airBotCommTextView);
-            TextView airBotRangeTextView = findViewById(R.id.airBotRangeTextView);
-            TextView airBotVisualTextView = findViewById(R.id.airBotVisualTextView);
+            TextView airBotCamTextView = findViewById(R.id.airBotCamTextView);
+            TextView airBotETimeTextView = findViewById(R.id.airBotETimeTextView);
+            TextView airBotERangeTextView = findViewById(R.id.airBotERangeTextView);
             TextView airBotPayloadTextView = findViewById(R.id.airBotPayloadTextView);
 
             // Set AirBot fields visible
             airBotLightTextView.setVisibility(View.VISIBLE);
-            airBotOperationTimeTextView.setVisibility(View.VISIBLE);
+            airBotNavTimeTextView.setVisibility(View.VISIBLE);
             airBotCommTextView.setVisibility(View.VISIBLE);
-            airBotRangeTextView.setVisibility(View.VISIBLE);
-            airBotVisualTextView.setVisibility(View.VISIBLE);
+            airBotCamTextView.setVisibility(View.VISIBLE);
+            airBotETimeTextView.setVisibility(View.VISIBLE);
+            airBotERangeTextView.setVisibility(View.VISIBLE);
             airBotPayloadTextView.setVisibility(View.VISIBLE);
 
             // Set values for AirBot-specific fields
             airBotLightTextView.setText("Light Conditions: " + intent.getStringExtra("airBotLight"));
-            airBotOperationTimeTextView.setText("Operation Time: " + intent.getStringExtra("airBotOperationTime"));
-            airBotCommTextView.setText("2-Way Communication: " + intent.getStringExtra("airBotComm"));
-            airBotRangeTextView.setText("Communication Range: " + intent.getStringExtra("airBotRange"));
-            airBotVisualTextView.setText("Visual Communication: " + intent.getStringExtra("airBotVisual"));
+            airBotNavTimeTextView.setText("Navigation Time: " + intent.getStringExtra("airBotNavTime"));
+            airBotCommTextView.setText("2-Way Audio Communication: " + intent.getStringExtra("airBotComm"));
+            airBotCamTextView.setText("Camera Requirement: " + intent.getStringExtra("airBotCam"));
+            airBotETimeTextView.setText("Effector Time: " + intent.getStringExtra("airBotETime"));
+            airBotERangeTextView.setText("Effector Range: " + intent.getStringExtra("airBotERange"));
             airBotPayloadTextView.setText("Payload Capacity: " + intent.getStringExtra("airBotPayload"));
 
         } else if ("GroundBot".equals(botType)) {
             // GroundBot-specific information
             TextView groundBotLightTextView = findViewById(R.id.groundBotLightTextView);
-            TextView groundBotOperationTimeTextView = findViewById(R.id.groundBotOperationTimeTextView);
+            TextView groundBotNavTimeTextView = findViewById(R.id.groundBotNavigationTimeTextView);
             TextView groundBotCommTextView = findViewById(R.id.groundBotCommTextView);
-            TextView groundBotRangeTextView = findViewById(R.id.groundBotRangeTextView);
-            TextView groundBotVisualTextView = findViewById(R.id.groundBotVisualTextView);
+            TextView groundBotCamTextView = findViewById(R.id.groundBotCamTextView);
+            TextView groundBotETimeTextView = findViewById(R.id.groundBotETimeTextView);
+            TextView groundBotERangeTextView = findViewById(R.id.groundBotERangeTextView);
             TextView groundBotPayloadTextView = findViewById(R.id.groundBotPayloadTextView);
 
             // Set GroundBot fields visible
             groundBotLightTextView.setVisibility(View.VISIBLE);
-            groundBotOperationTimeTextView.setVisibility(View.VISIBLE);
+            groundBotNavTimeTextView.setVisibility(View.VISIBLE);
             groundBotCommTextView.setVisibility(View.VISIBLE);
-            groundBotRangeTextView.setVisibility(View.VISIBLE);
-            groundBotVisualTextView.setVisibility(View.VISIBLE);
+            groundBotCamTextView.setVisibility(View.VISIBLE);
+            groundBotETimeTextView.setVisibility(View.VISIBLE);
+            groundBotERangeTextView.setVisibility(View.VISIBLE);
             groundBotPayloadTextView.setVisibility(View.VISIBLE);
 
             // Set values for GroundBot-specific fields
             groundBotLightTextView.setText("Light Conditions: " + intent.getStringExtra("groundBotLight"));
-            groundBotOperationTimeTextView.setText("Operation Time: " + intent.getStringExtra("groundBotOperationTime"));
-            groundBotCommTextView.setText("2-Way Communication: " + intent.getStringExtra("groundBotComm"));
-            groundBotRangeTextView.setText("Communication Range: " + intent.getStringExtra("groundBotRange"));
-            groundBotVisualTextView.setText("Visual Communication: " + intent.getStringExtra("groundBotVisual"));
+            groundBotNavTimeTextView.setText("Navigation Time: " + intent.getStringExtra("groundBotNavTime"));
+            groundBotCommTextView.setText("2-Way Audio Communication: " + intent.getStringExtra("groundBotComm"));
+            groundBotCamTextView.setText("Camera Requirement: " + intent.getStringExtra("groundBotCam"));
+            groundBotETimeTextView.setText("Effector Time: " + intent.getStringExtra("groundBotETime"));
+            groundBotERangeTextView.setText("Effector Range: " + intent.getStringExtra("groundBotERange"));
             groundBotPayloadTextView.setText("Payload Capacity: " + intent.getStringExtra("groundBotPayload"));
         }
     }
@@ -101,17 +107,18 @@ public class PrintConfirmActivity extends AppCompatActivity {
         if ("AirBot".equals(botType)) {
             // Retrieve AirBot-specific data
             String lightConditions = intent.getStringExtra("airBotLight");
-            String operationTime = intent.getStringExtra("airBotOperationTime");
+            String NavTime = intent.getStringExtra("airBotNavTime");
             String communication = intent.getStringExtra("airBotComm");
-            String range = intent.getStringExtra("airBotRange");
-            String visualCommunication = intent.getStringExtra("airBotVisual");
+            String camera = intent.getStringExtra("airBotCam");
+            String eTime = intent.getStringExtra("airBotETime");
+            String eRange = intent.getStringExtra("airBotERange");
             String payload = intent.getStringExtra("airBotPayload");
 
-            //FIXME: Remove the following lines -- Just for Demo purpose
-            PrinterStatusIntent.putExtra("MissionID", missionID);
-            PrinterStatusIntent.putExtra("Printer-1", "AB_Arms");
-            PrinterStatusIntent.putExtra("Printer-2", "AB-Top_plate");
-            PrinterStatusIntent.putExtra("Printer-3", "AB-Bottom_plate");
+//            //FIXME: Remove the following lines -- Just for Demo purpose
+//            PrinterStatusIntent.putExtra("MissionID", missionID);
+//            PrinterStatusIntent.putExtra("Printer-1", "AB_Arms");
+//            PrinterStatusIntent.putExtra("Printer-2", "AB-Top_plate");
+//            PrinterStatusIntent.putExtra("Printer-3", "AB-Bottom_plate");
 
             //FIXME: Add in this truth table checking
 //            if("Daytime".equals(lightConditions) && "15 minutes".equals(operationTime) &&
