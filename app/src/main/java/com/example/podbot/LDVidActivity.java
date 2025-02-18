@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,25 +38,24 @@ public class LDVidActivity extends AppCompatActivity {
     }
 
     public void goToBack(View view) {
-        Intent intent = new Intent(LDVidActivity.this, DataLinkGateActivity.class);
+        Intent intent = new Intent(LDVidActivity.this, HomePageActivity.class);
         startActivity(intent);
     }
 
 
-    public void openSKYDROIDapp(View view) {
+    public void openUVCApp(View view) {
         try {
             Intent intent = new Intent();
-            intent.setClassName("com.shenyaocn.android.fuavg", "com.shenyaocn.android.fuav.MainActivity");
+            intent.setClassName("com.shenyaocn.android.usbcamera", "com.shenyaocn.android.usbcamera.MainActivity");
             startActivity(intent);
         } catch (Exception e) {
-            Log.e("openSKYDROIDapp", "Error launching app", e);
-            Toast.makeText(this, "Unable to open SKYDROID app.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to open USB Camera app.", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void goToDownloadPage(View view) {
-        // Redirect the user to the Softonic page for downloading the app
-        String url = "https://skydroid-fpv.en.softonic.com/android";
+        // Redirect the user to the Google play store for downloading the app
+        String url = "https://play.google.com/store/apps/details?id=com.shenyaocn.android.usbcamera&hl=en_US";
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);

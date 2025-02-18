@@ -64,8 +64,15 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToDataLinkGate(View view) {
-        Intent intent = new Intent(HomePageActivity.this, DataLinkGateActivity.class);
+//    public void goToDataLinkGate(View view) {
+//        Intent intent = new Intent(HomePageActivity.this, DataLinkGateActivity.class);
+//        startActivity(intent);
+//    }
+
+    public void goToPayloadView(View view) {
+        Intent intent = new Intent(HomePageActivity.this, LDVidActivity.class);
+        // even though this says LDVidActivity this is relevant for both cameras PODBot Phase II is using
+        // Explanation: Both Cameras use UVC and its been implemented through a supplemental app so the LDVid activity is already setup to open an external app
         startActivity(intent);
     }
 

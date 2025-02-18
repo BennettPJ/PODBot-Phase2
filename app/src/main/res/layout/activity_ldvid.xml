@@ -17,7 +17,7 @@
         android:layout_margin="16dp"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:text="Open the SKYDROID app to access video streaming."
+        android:text="Open the USB Camera app to access video streaming."
         android:textColor="@color/Raytheon_Red"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -63,8 +63,8 @@
         android:layout_marginTop="160dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_button"
-        android:onClick="openSKYDROIDapp"
-        android:text="Open SKYDROID app"
+        android:onClick="openUVCApp"
+        android:text="Open USB Camera app"
         app:layout_constraintEnd_toStartOf="@id/goToDownloadPageButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button10" />
@@ -79,7 +79,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_button"
         android:onClick="goToDownloadPage"
-        android:text="Download SKYDROID app"
+        android:text="Download USB Camera app"
         app:layout_constraintEnd_toStartOf="@id/openUserManualButton"
         app:layout_constraintStart_toEndOf="@id/openBambuHandyButton"
         app:layout_constraintTop_toBottomOf="@id/button10" />
