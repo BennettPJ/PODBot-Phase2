@@ -9,6 +9,21 @@
     tools:context=".HomePageActivity">
 
     <Button
+        android:id="@+id/button20"
+        android:layout_width="193dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="200dp"
+        android:backgroundTint="@color/Raytheon_Red"
+        android:onClick="goToABConfig"
+        android:text="Open AirBot Configuration Application"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+
+    <Button
         android:id="@+id/button15"
         android:layout_width="193dp"
         android:layout_height="106dp"
@@ -30,7 +45,7 @@
         android:text="View Assembly Instructions + BOM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.903" />

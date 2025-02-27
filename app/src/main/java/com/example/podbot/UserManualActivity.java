@@ -176,5 +176,9 @@ public class UserManualActivity extends AppCompatActivity {
             Intent intent = new Intent(UserManualActivity.this, LANPrintActivity.class);
             startActivity(intent);
         }
+        else if(sourcePage.equals("ABConfig")){
+            Intent intent = new Intent(UserManualActivity.this, AirBotConfig.class);
+            startActivity(intent);
+        }
     }
 }

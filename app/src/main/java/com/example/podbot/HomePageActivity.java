@@ -69,6 +69,12 @@ public class HomePageActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 
+
+    public void goToABConfig(View view){
+        Intent intent = new Intent(HomePageActivity.this, AirBotConfig.class);
+        startActivity(intent);
+    }
+
     public void goToPayloadView(View view) {
         Intent intent = new Intent(HomePageActivity.this, LDVidActivity.class);
         // even though this says LDVidActivity this is relevant for both cameras PODBot Phase II is using
