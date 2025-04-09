@@ -1,6 +1,7 @@
 package com.example.podbot;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,11 +51,12 @@ public class LANPrintActivity extends AppCompatActivity {
             return;
         }
 
-        // FIXME: Need to handle more gracefully to dynamically send files
-        String fileName = "MyTestBench.gcode";
+        // Retrieve values from shared pref
+        SharedPreferences prefs = getSharedPreferences("PrinterFiles", MODE_PRIVATE);
+        String printer1File = prefs.getString("Printer1", "Error");
 
         new Thread(() -> {
-            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, fileName);
+            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, printer1File);
             runOnUiThread(() -> {
                 if (printSuccess) {
                     Toast.makeText(this, "File uploaded to printer!", Toast.LENGTH_SHORT).show();
@@ -84,11 +86,12 @@ public class LANPrintActivity extends AppCompatActivity {
             return;
         }
 
-        // FIXME: Need to handle more gracefully to dynamically send files
-        String fileName = "MyTestBench.gcode";
+        // Retrieve values from shared pref
+        SharedPreferences prefs = getSharedPreferences("PrinterFiles", MODE_PRIVATE);
+        String printer2File = prefs.getString("Printer2", "Error");
 
         new Thread(() -> {
-            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, fileName);
+            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, printer2File);
             runOnUiThread(() -> {
                 if (printSuccess) {
                     Toast.makeText(this, "File uploaded to printer!", Toast.LENGTH_SHORT).show();
@@ -118,11 +121,12 @@ public class LANPrintActivity extends AppCompatActivity {
             return;
         }
 
-        // FIXME: Need to handle more gracefully to dynamically send files
-        String fileName = "MyTestBench.gcode";
+        // Retrieve values from shared pref
+        SharedPreferences prefs = getSharedPreferences("PrinterFiles", MODE_PRIVATE);
+        String printer3File = prefs.getString("Printer3", "Error");
 
         new Thread(() -> {
-            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, fileName);
+            boolean printSuccess = sendPrintRequestToPi(raspberryPiIP, printerIp, accessCode, printer3File);
             runOnUiThread(() -> {
                 if (printSuccess) {
                     Toast.makeText(this, "File uploaded to printer!", Toast.LENGTH_SHORT).show();

@@ -108,30 +108,30 @@ public class PrintConfirmActivity extends AppCompatActivity {
         if(config.trim().equals("0110010000000010")){
             //AirBot FR-2
             BotToPrint = "AirBot Mission-" + missionID;
-            Printer1 = "AB_FR2_arms";
-            Printer2 = "AB_FR_2_Bottom_Plate";
-            Printer3 = "AB_FR_2_Top_Plate_Hooks_Landing_Gear";
+            Printer1 = "AirBot_FR2_PT1_5h13m.gcode";
+            Printer2 = "AirBot_FR2_PT2_4h40m.gcode";
+            Printer3 = "AirBot_FR2_PT3_3h36m.gcode";
         }
         else if(config.trim().equals("0110110000111111")){
             //AirBot TD-1
             BotToPrint = "AirBot Mission-" + missionID;
-            Printer1 = "AB_TD1_arms";
-            Printer2 = "AB_TD1_Bottom_Plate";
-            Printer3 = "AB_TD1_Top_Plate_Hooks_Landing_Gear";
+            Printer1 = "AirBot_FR2_PT1_5h13m.gcode";
+            Printer2 = "AirBot_FR2_PT2_4h40m.gcode";
+            Printer3 = "AirBot_FR2_PT3_3h36m.gcode";
         }
         else if(config.trim().equals("0010010001111100")){
             //GroundBot BP-3 and TD-1
             BotToPrint = "GroundBot Mission-" + missionID;
-            Printer1 = "GB_BP3_TD1_Base_Frame_Back_Wall";
-            Printer2 = "GB_BP3_TD1_Front_Axle_Support_Top_Plate";
-            Printer3 = "GB_BP3_TD1_Gears";
+            Printer1 = "GroundBot_BP3_PT1_5h38m.gcode";
+            Printer2 = "GroundBot_BP3_PT2_6h37m.gcode";
+            Printer3 = "GroundBot_BP3_PT3_3h47m.gcode";
         }
         else{
             //PODBot not configured
             BotToPrint = "PODBot Other Mission-" + missionID;
-            Printer1 = "FIXME: Generic file";
-            Printer2 = "FIXME: Generic file";
-            Printer3 = "FIXME: Generic file";
+            Printer1 = "Bot Not in Library: Generic file";
+            Printer2 = "Bot Not in Library: Generic file";
+            Printer3 = "Bot Not in Library: Generic file";
         }
 
         //Save the mission ID and printer files to shared preferences
